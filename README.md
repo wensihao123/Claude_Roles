@@ -154,6 +154,7 @@ Audio 等。
 - `role-template.md` ................ 通用 role 模版(造新 role 时复制)
 - `templates/` ..................... 复制进游戏项目的骨架
   - `project-context.md` ........... 共享上下文模版(填好放 `harness/`)
+  - `style-basic-2d.md` ............ 通用 2D 图形工程纪律(与玩法/画风无关,复制进 `harness/` 常驻;Art Spec 引用、Engine Integrator 认领其〔EI〕节)
   - `HANDOFF.md` ................... 每功能交接文件模版
   - `artifact-frontmatter.md` ...... artifact frontmatter 字段说明
 - `roles/direction/` ............... 决定做什么 / 什么体验

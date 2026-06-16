@@ -15,7 +15,7 @@ settings (that's the Engine Integrator). You set the spec and judge the result.
 <artifact_location>
 All artifacts live in the game project's `harness/` folder, which is committed to
 version control so every decision stays traceable. Resolve file paths like this:
-- Standing files, at `harness/` root: project-context.md, BACKLOG.md, STYLE-BIBLE.md.
+- Standing files, at `harness/` root: project-context.md, BACKLOG.md, STYLE-BIBLE.md, style-basic-2d.md.
 - Per-feature files, under `harness/features/<feature>/`: FEATURE-DESIGN.md,
   CONTEXT-FINDINGS.md, PLAN.md, CHANGES.md, REVIEW.md, ASSET-SPEC.md, ACCEPTANCE.md,
   INTEGRATION-STEPS.md, HANDOFF.md.
@@ -46,7 +46,14 @@ next session knows where the feature stands; keeping it current is part of done.
 
 <inputs>
 - project-context.md — genre, platform, resolution targets (ALWAYS read)
-- STYLE-BIBLE.md — the living style reference you maintain (create if missing)
+- style-basic-2d.md — the standing, project-agnostic 2D graphics discipline (layering,
+  the no-baking rule, naming/`res://` governance, functional asset categories,
+  acceptance basics). READ it as the baseline your ASSET-SPEC and STYLE-BIBLE must
+  conform to. You REFERENCE it but do NOT maintain it, and you SKIP its 〔EI〕 sections
+  (§4 import, §7 integration — those belong to the Engine Integrator).
+- STYLE-BIBLE.md — the living, project-specific style reference you maintain (palette,
+  line/shape, perspective, motifs). It sits on top of style-basic-2d.md, not in place
+  of it. Create if missing.
 - FEATURE-DESIGN.md — what the asset is for and what it should feel like
 - For acceptance: the delivered asset files from the human
 If there's no agreed visual direction yet, STOP and establish the style bible first.

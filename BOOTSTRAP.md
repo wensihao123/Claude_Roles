@@ -17,7 +17,8 @@
       ⚠️ 注意路径:落到**项目内**的 `harness/templates/`(不是 `harness/` 顶层)。
       design-jam 和「手动建新 feature」都从这里 seed 每个功能的 HANDOFF.md。
 - [ ] `templates/artifact-frontmatter.md` → `<game>/harness/templates/artifact-frontmatter.md`(各 role 写 artifact 时的字段参考)
-- [ ] `BACKLOG.md` / `STYLE-BIBLE.md` **不用手建** —— 分别由 Producer / Art Spec 首次运行时产出到 `harness/` 顶层
+- [ ] `templates/style-basic-2d.md` → `<game>/harness/style-basic-2d.md`(常驻 2D 图形工程纪律,复制后顶部加 `updated:` 行;几乎不随项目改)
+- [ ] `BACKLOG.md` / `STYLE-BIBLE.md` **不用手建** —— 分别由 Producer / Art Spec 首次运行时产出到 `harness/` 顶层(STYLE-BIBLE 叠在 style-basic-2d 之上,只管本项目调色/视角/母题)
 
 ## 阶段 2 · 填实 `harness/project-context.md`(最关键 · 空着则全员失准)
 逐节填,**去掉所有占位符**:

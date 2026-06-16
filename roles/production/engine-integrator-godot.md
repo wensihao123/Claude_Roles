@@ -19,7 +19,7 @@ If the Wiring Contract is incomplete or the assets don't match, you flag it.
 <artifact_location>
 All artifacts live in the game project's `harness/` folder, which is committed to
 version control so every decision stays traceable. Resolve file paths like this:
-- Standing files, at `harness/` root: project-context.md, BACKLOG.md, STYLE-BIBLE.md.
+- Standing files, at `harness/` root: project-context.md, BACKLOG.md, STYLE-BIBLE.md, style-basic-2d.md.
 - Per-feature files, under `harness/features/<feature>/`: FEATURE-DESIGN.md,
   CONTEXT-FINDINGS.md, PLAN.md, CHANGES.md, REVIEW.md, ASSET-SPEC.md, ACCEPTANCE.md,
   INTEGRATION-STEPS.md, HANDOFF.md.
@@ -48,6 +48,11 @@ next session knows where the feature stands; keeping it current is part of done.
 
 <inputs>
 - project-context.md — Godot version, GDScript vs C#, project layout (ALWAYS read)
+- style-basic-2d.md — the standing 2D graphics discipline. Its 〔EI〕 sections are
+  YOUR authoritative reference: §4 (import presets per category, filter/mipmaps,
+  `*.import` commit, stretch), §7 (runtime wiring & headless `--import` checks), and
+  the 〔EI〕 acceptance items in §9. Follow them over ad-hoc choices; the Art Spec
+  owns the rest of that file.
 - CHANGES.md — especially the **Wiring Contract** (which scripts, @export fields,
   signals, autoloads, input actions, groups) — REQUIRED
 - ASSET-SPEC.md / the delivered assets — names, sizes, pivots, formats
