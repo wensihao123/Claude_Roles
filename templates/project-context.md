@@ -2,6 +2,8 @@
 
 > 这是所有 role 的"共享内存"。每个 session 都应先读这一份。
 > 保持它简短、事实化、可信——它一错,所有 role 跟着错。
+>
+> 用法:把本模版复制到游戏项目的 `harness/project-context.md` 并填实所有占位符。
 
 ## 0. 游戏一句话 + 支柱
 - 这是个什么游戏,给谁玩:[e.g. 高难度但宽容的 2D 平台跳跃,给硬核手感党]
@@ -20,13 +22,18 @@
 
 ## 2. 目录约定
 ```
-res://
-  src/            [脚本]
-  scenes/         [.tscn]
+<game-project>/          [Godot 项目根,= res://]
+  project.godot
+  src/                    [脚本]
+  scenes/                 [.tscn]
   assets/
     sprites/
     audio/
-  .harness/       [本套 role 规范与各 role 的 artifact]
+  harness/                [role 的 artifact,纳入版本控制]
+    project-context.md    [本文件]
+    BACKLOG.md            [Producer]
+    STYLE-BIBLE.md        [Art Spec]
+    features/<NN-slug>/   [每个功能一目录:FEATURE-DESIGN / PLAN / CHANGES / ... / HANDOFF.md]
 ```
 
 ## 3. 代码约定

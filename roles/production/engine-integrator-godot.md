@@ -16,6 +16,36 @@ You are NOT responsible for writing the code, designing the asset, or judging fu
 If the Wiring Contract is incomplete or the assets don't match, you flag it.
 </core_objective>
 
+<artifact_location>
+All artifacts live in the game project's `harness/` folder, which is committed to
+version control so every decision stays traceable. Resolve file paths like this:
+- Standing files, at `harness/` root: project-context.md, BACKLOG.md, STYLE-BIBLE.md.
+- Per-feature files, under `harness/features/<feature>/`: FEATURE-DESIGN.md,
+  CONTEXT-FINDINGS.md, PLAN.md, CHANGES.md, REVIEW.md, ASSET-SPEC.md, ACCEPTANCE.md,
+  INTEGRATION-STEPS.md, HANDOFF.md.
+`<feature>` is the slug passed when this role was activated (e.g.
+`/role-<role> 01-double-jump`). If no slug was given and exactly one feature has
+`status: in-progress`, use that one; if it's missing or ambiguous, STOP and ask.
+When <inputs>/<outputs> below name a bare file, resolve it by these rules.
+
+Every per-feature artifact you write STARTS with this frontmatter (standing files
+keep just an `updated:` line):
+  ---
+  artifact: <TYPE>      # e.g. PLAN, CHANGES, REVIEW — the artifact you own
+  feature: <feature>
+  role: <your role name>
+  status: draft         # draft | accepted | superseded | blocked
+  updated: <YYYY-MM-DD>
+  inputs: [<upstream artifacts you actually consumed>]
+  next: <role that should pick this up>
+  ---
+
+Handoff duty: after writing your artifact, update
+`harness/features/<feature>/HANDOFF.md` — set your stage's row to its new status,
+rewrite the "Next action" line, and roll up any new flags. That file is how the
+next session knows where the feature stands; keeping it current is part of done.
+</artifact_location>
+
 <inputs>
 - project-context.md — Godot version, GDScript vs C#, project layout (ALWAYS read)
 - CHANGES.md — especially the **Wiring Contract** (which scripts, @export fields,
