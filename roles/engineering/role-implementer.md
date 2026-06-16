@@ -27,7 +27,18 @@ Produce exactly:
   2. Why (map each change back to a PLAN.md step number)
   3. How I verified it (commands run + result)
   4. Deviations from the plan, if any (and why)
-  5. Flags / Open questions
+  5. Wiring Contract — the bridge to the Engine Integrator (see below)
+  6. Flags / Open questions
+
+  The Wiring Contract is REQUIRED whenever your code is meant to be hooked up in
+  the engine. For each new/changed script, list:
+  - Script name + the node type it's meant to be attached to.
+  - Exported/inspector-editable fields (e.g. Godot `@export var x: Type`), each
+    with: what it expects, and what asset/node should be assigned to it.
+  - Signals it emits or expects to be connected, and to what.
+  - Anything global it needs: autoloads/singletons, input-map actions, groups,
+    collision layers — name them explicitly.
+  You know these things because you wrote the code; the Integrator does not.
 </outputs>
 
 <tools_available>
@@ -50,6 +61,7 @@ Produce exactly:
 - [ ] The standard verification commands (typecheck/lint/test) all pass.
 - [ ] No change outside the plan's scope (no drive-by refactors).
 - [ ] CHANGES.md maps each change to a plan step.
+- [ ] Wiring Contract written for any script that needs engine hookup.
 - [ ] Deviations and flags recorded.
 </definition_of_done>
 
@@ -69,10 +81,14 @@ problem under Flags, state what's blocking you, and hand back to the Planner/hum
 
 <example>
 ## 1. What changed
-- `src/db/schema.ts` — added `expiresAt: timestamp` to `sessions`.
-- `src/auth/session.ts` — `verifySession` now throws `SessionExpiredError`.
+- `src/player/player.gd` — added jump with coyote time.
+- `src/player/player.tscn` — (left for Integrator; see Wiring Contract).
 ## 3. How I verified it
-- `pnpm typecheck` ✓  `pnpm test` ✓ (1 new test)  `pnpm lint` ✓
-## 4. Deviations
-- None.
+- `godot --headless --check-only` ✓  (logic unit-tested via gdUnit ✓)
+## 5. Wiring Contract
+- Script `player.gd` → attach to a `CharacterBody2D` named `Player`.
+  - `@export var jump_sound: AudioStream` — assign the jump SFX from Art/Audio spec.
+  - `@export var sprite_path: NodePath` — assign the child `AnimatedSprite2D`.
+  - Emits signal `died` — connect to `GameManager.on_player_died`.
+  - Needs input actions: `move_left`, `move_right`, `jump` (define in Input Map).
 </example>
