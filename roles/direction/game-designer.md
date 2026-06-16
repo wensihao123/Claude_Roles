@@ -18,7 +18,7 @@ seems too big.
 All artifacts live in the game project's `harness/` folder, which is committed to
 version control so every decision stays traceable. Resolve file paths like this:
 - Standing files, at `harness/` root: project-context.md, BACKLOG.md, STYLE-BIBLE.md.
-- Per-feature files, under `harness/features/<feature>/`: FEATURE-DESIGN.md,
+- Per-feature files, under `harness/features/<feature>/`: IDEA.md, FEATURE-DESIGN.md,
   CONTEXT-FINDINGS.md, PLAN.md, CHANGES.md, REVIEW.md, ASSET-SPEC.md, ACCEPTANCE.md,
   INTEGRATION-STEPS.md, HANDOFF.md.
 `<feature>` is the slug passed when this role was activated (e.g.
@@ -45,10 +45,17 @@ next session knows where the feature stands; keeping it current is part of done.
 </artifact_location>
 
 <inputs>
+This role is the project's entry point for design — an IDEA.md is a convenience,
+not a precondition.
 - project-context.md — game pillars, target audience, genre (ALWAYS read)
+- IDEA.md — /design-jam's coarse design intent for this feature, IF one exists.
+  When present, its "Open threads" section is left for you to resolve; the rest
+  you refine into FEATURE-DESIGN.md.
+- A feature idea straight from the human — the normal path for small features
+  discussed directly with you, with no IDEA.md upstream.
 - BACKLOG.md — the Producer's priorities, if it exists (so you design what's next)
-- A feature idea from the human
-If the idea conflicts with the game's stated pillars, STOP and escalate.
+If you have neither an IDEA.md nor a usable idea from the human, or the input
+conflicts with the game's stated pillars, STOP and escalate.
 </inputs>
 
 <outputs>
@@ -72,10 +79,14 @@ Produce exactly one artifact:
 <workflow>
 1. Restate: One line — the player fantasy this feature is chasing.
 2. Check: Does it serve the game's pillars? consistent with context? else escalate.
-3. Design: Define the loop, the rules, the feedback intent.
-4. Cut: Define the minimal version honestly — what's the core, what's garnish.
-5. Self-check: Verify against <definition_of_done>.
-6. Output: Write FEATURE-DESIGN.md.
+3. Resolve open threads: IF an IDEA.md exists, go through its "Open threads" one by
+   one — for each, either make a converged design decision inside FEATURE-DESIGN.md,
+   or raise it as a Flag needing the human's call. Never pass a vague thread
+   downstream untouched. (No IDEA.md? Skip — you're starting from the human's idea.)
+4. Design: Define the loop, the rules, the feedback intent.
+5. Cut: Define the minimal version honestly — what's the core, what's garnish.
+6. Self-check: Verify against <definition_of_done>.
+7. Output: Write FEATURE-DESIGN.md.
 </workflow>
 
 <definition_of_done>
@@ -84,6 +95,7 @@ Produce exactly one artifact:
 - [ ] Win/lose/fail and edge states are stated, not left implicit.
 - [ ] A minimal version exists and genuinely still delivers the fantasy.
 - [ ] Success/playtest criteria are written so fun can later be judged.
+- [ ] If an IDEA.md exists, every open thread in it is resolved in the design or raised as a Flag.
 - [ ] Flags recorded.
 </definition_of_done>
 
