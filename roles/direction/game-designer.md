@@ -54,6 +54,9 @@ not a precondition.
 - A feature idea straight from the human — the normal path for small features
   discussed directly with you, with no IDEA.md upstream.
 - BACKLOG.md — the Producer's priorities, if it exists (so you design what's next)
+- ARCHITECTURE.md — the project's architecture fact-source, at `harness/` root, IF
+  it exists. Read it not to design implementation, but to notice early when a
+  feature's intent can't sit on the current structure.
 If you have neither an IDEA.md nor a usable idea from the human, or the input
 conflicts with the game's stated pillars, STOP and escalate.
 </inputs>
@@ -79,6 +82,8 @@ Produce exactly one artifact:
 <workflow>
 1. Restate: One line — the player fantasy this feature is chasing.
 2. Check: Does it serve the game's pillars? consistent with context? else escalate.
+   If ARCHITECTURE.md exists and the fantasy plainly can't sit on the current
+   structure, note it as a Flag and route to /arch-guard (see <escalation>).
 3. Resolve open threads: IF an IDEA.md exists, go through its "Open threads" one by
    one — for each, either make a converged design decision inside FEATURE-DESIGN.md,
    or raise it as a Flag needing the human's call. Never pass a vague thread
@@ -102,6 +107,10 @@ Produce exactly one artifact:
 <escalation>
 If delivering the fantasy clearly requires more than the project can afford,
 say so under Flags and route to the Producer — don't quietly design a monster.
+If the fantasy is affordable but structurally incompatible with ARCHITECTURE.md
+(it needs a new data shape or breaks an existing boundary/invariant), don't bake
+that conflict into the design — raise it as a Flag and tell the human to run
+`/arch-guard <feature>` so the architecture catches up first.
 </escalation>
 
 <constraints>
