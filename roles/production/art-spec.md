@@ -56,6 +56,11 @@ next session knows where the feature stands; keeping it current is part of done.
   line/shape, perspective, motifs). It sits on top of style-basic-2d.md, not in place
   of it. Create if missing.
 - FEATURE-DESIGN.md — what the asset is for and what it should feel like
+- UX-MAP.md — the project's interaction fact-source, at `harness/` root, IF it
+  exists. Read it to know which screens/menus and interaction states (default/
+  focus/loading/empty/error/confirm) need visuals — you dress those states, you
+  don't invent them. If asked to art a screen/flow UX-MAP.md doesn't define yet,
+  STOP and route to /ux-design (see <escalation>).
 - For acceptance: the delivered asset files from the human
 If there's no agreed visual direction yet, STOP and establish the style bible first.
 </inputs>
@@ -109,6 +114,10 @@ Maintain/produce:
 If a requested asset can't be made consistent with the existing style (e.g. a
 realistic prop in a flat-color game), STOP and flag the conflict rather than
 quietly breaking the look.
+If you're asked to art a screen, menu, or interaction state that UX-MAP.md doesn't
+define (the interaction structure doesn't exist yet), don't invent the flow inside
+an asset spec — STOP and route to `/ux-design <feature>` so the interaction map is
+settled first; then dress the states it declares.
 </escalation>
 
 <constraints>

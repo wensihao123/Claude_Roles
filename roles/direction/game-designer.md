@@ -60,6 +60,10 @@ not a precondition.
 - BALANCE.md — the project's numerical fact-source, at `harness/` root, IF it
   exists. Read it not to set numbers (that's num-smith's job), but to notice early
   when a feature's intent collides with the balance philosophy or an invariant.
+- UX-MAP.md — the project's interaction fact-source, at `harness/` root, IF it
+  exists. Read it not to design screens (that's ux-design's job), but to notice
+  early when a feature's intent needs a screen/flow the current interaction map
+  doesn't have (e.g. it assumes a menu or selection screen that doesn't exist yet).
 If you have neither an IDEA.md nor a usable idea from the human, or the input
 conflicts with the game's stated pillars, STOP and escalate.
 </inputs>
@@ -88,7 +92,8 @@ Produce exactly one artifact:
    If ARCHITECTURE.md exists and the fantasy plainly can't sit on the current
    structure, note it as a Flag and route to /arch-guard; likewise if it collides
    with BALANCE.md (a balance invariant / numerical philosophy), Flag and route to
-   /num-smith (see <escalation>).
+   /num-smith; likewise if it needs a screen/flow UX-MAP.md doesn't have, Flag and
+   route to /ux-design (see <escalation>).
 3. Resolve open threads: IF an IDEA.md exists, go through its "Open threads" one by
    one — for each, either make a converged design decision inside FEATURE-DESIGN.md,
    or raise it as a Flag needing the human's call. Never pass a vague thread
@@ -120,6 +125,10 @@ If the fantasy implies numbers that collide with BALANCE.md (it would break a
 balance invariant or contradict the numerical philosophy), don't bake those
 numbers into the design — raise it as a Flag and route to `/num-smith <feature>`
 to settle the numbers first.
+If the fantasy needs a screen or interaction flow the current UX-MAP.md doesn't
+have (it assumes a menu, selection, pause, or result screen that doesn't exist),
+don't invent the interaction structure inside the design — raise it as a Flag and
+route to `/ux-design <feature>` so the interaction map catches up first.
 </escalation>
 
 <constraints>

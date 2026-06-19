@@ -47,6 +47,8 @@ next session knows where the feature stands; keeping it current is part of done.
   boundaries, invariants, extension points), at `harness/` root, IF it exists
 - BALANCE.md              — the numerical fact-source (formulas, curves, economy,
   tuning constants, balance invariants), at `harness/` root, IF it exists
+- STATE-MACHINES.md       — the state-management fact-source (machine inventory,
+  states & transitions, FSM conventions, invariants), at `harness/` root, IF it exists
 - CONTEXT-FINDINGS.md     — Explorer's survey, if one exists
 - A goal from the human
 If the goal conflicts with the findings, STOP and escalate before planning.
@@ -56,6 +58,10 @@ to /arch-guard for an architecture decision first (see <escalation>).
 If it would need numbers that violate BALANCE.md (break a balance invariant or
 contradict the numerical philosophy), STOP and route to /num-smith for the numbers
 first — don't bake stray constants into the plan (see <escalation>).
+If it would need a new state/transition or a new machine that STATE-MACHINES.md
+doesn't have (or would flip ad-hoc flags outside a declared transition table), do
+NOT plan around it — STOP and route to /state-machine-master for the state design
+first (see <escalation>).
 </inputs>
 
 <outputs>
@@ -76,9 +82,11 @@ Produce exactly one artifact:
 <workflow>
 1. Restate: One line — the goal as you understand it.
 2. Check: Are context + findings sufficient and consistent, AND does the goal fit
-   ARCHITECTURE.md and BALANCE.md (if they exist)? If insufficient/inconsistent ->
-   escalate; if it conflicts with the architecture -> STOP and route to /arch-guard;
-   if it conflicts with the numbers -> STOP and route to /num-smith.
+   ARCHITECTURE.md, BALANCE.md, and STATE-MACHINES.md (if they exist)? If
+   insufficient/inconsistent -> escalate; if it conflicts with the architecture ->
+   STOP and route to /arch-guard; if it conflicts with the numbers -> STOP and route
+   to /num-smith; if it needs a new state/transition/machine -> STOP and route to
+   /state-machine-master.
 3. Decide: Make the key technical choices; record each with its rationale.
 4. Sequence: Break into small, independently verifiable steps in execution order.
 5. Self-check: Verify against <definition_of_done>.
@@ -106,6 +114,11 @@ Likewise, if the goal can't be planned without numbers that break BALANCE.md (a
 balance invariant or the numerical philosophy), that's a numbers decision, not a
 plan. STOP and run `/num-smith <feature>`; resume planning from the BALANCE-CHANGE
 doc it produces. Don't bury stray tuning constants in the plan to dodge it.
+Likewise, if the goal can't be planned without a new state, transition, or machine
+(or it would manage flow with ad-hoc boolean flags outside a declared transition
+table), that's a state-design decision, not a plan. STOP and run
+`/state-machine-master <feature>`; resume planning from the STATE-CHANGE doc it
+produces. Don't smear flow control across scattered flags to dodge it.
 </escalation>
 
 <constraints>
