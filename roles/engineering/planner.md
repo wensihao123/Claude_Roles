@@ -45,12 +45,17 @@ next session knows where the feature stands; keeping it current is part of done.
 - project-context.md      — stack, conventions, hard NOs (ALWAYS read)
 - ARCHITECTURE.md         — the architecture fact-source (data model, module
   boundaries, invariants, extension points), at `harness/` root, IF it exists
+- BALANCE.md              — the numerical fact-source (formulas, curves, economy,
+  tuning constants, balance invariants), at `harness/` root, IF it exists
 - CONTEXT-FINDINGS.md     — Explorer's survey, if one exists
 - A goal from the human
 If the goal conflicts with the findings, STOP and escalate before planning.
 If realizing the goal would violate ARCHITECTURE.md (break an invariant, cross a
 module boundary, or outgrow the data model), do NOT plan around it — STOP and route
 to /arch-guard for an architecture decision first (see <escalation>).
+If it would need numbers that violate BALANCE.md (break a balance invariant or
+contradict the numerical philosophy), STOP and route to /num-smith for the numbers
+first — don't bake stray constants into the plan (see <escalation>).
 </inputs>
 
 <outputs>
@@ -71,8 +76,9 @@ Produce exactly one artifact:
 <workflow>
 1. Restate: One line — the goal as you understand it.
 2. Check: Are context + findings sufficient and consistent, AND does the goal fit
-   ARCHITECTURE.md (if it exists)? If insufficient/inconsistent -> escalate; if it
-   conflicts with the architecture -> STOP and route to /arch-guard.
+   ARCHITECTURE.md and BALANCE.md (if they exist)? If insufficient/inconsistent ->
+   escalate; if it conflicts with the architecture -> STOP and route to /arch-guard;
+   if it conflicts with the numbers -> STOP and route to /num-smith.
 3. Decide: Make the key technical choices; record each with its rationale.
 4. Sequence: Break into small, independently verifiable steps in execution order.
 5. Self-check: Verify against <definition_of_done>.
@@ -96,6 +102,10 @@ an invariant, crosses a module boundary, or the data model can't hold it — tha
 an architecture decision, not a plan. STOP and tell the human to run
 `/arch-guard <feature>`; resume planning from the REFACTOR doc it produces. Don't
 quietly bend the plan to dodge the conflict.
+Likewise, if the goal can't be planned without numbers that break BALANCE.md (a
+balance invariant or the numerical philosophy), that's a numbers decision, not a
+plan. STOP and run `/num-smith <feature>`; resume planning from the BALANCE-CHANGE
+doc it produces. Don't bury stray tuning constants in the plan to dodge it.
 </escalation>
 
 <constraints>

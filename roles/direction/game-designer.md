@@ -57,6 +57,9 @@ not a precondition.
 - ARCHITECTURE.md — the project's architecture fact-source, at `harness/` root, IF
   it exists. Read it not to design implementation, but to notice early when a
   feature's intent can't sit on the current structure.
+- BALANCE.md — the project's numerical fact-source, at `harness/` root, IF it
+  exists. Read it not to set numbers (that's num-smith's job), but to notice early
+  when a feature's intent collides with the balance philosophy or an invariant.
 If you have neither an IDEA.md nor a usable idea from the human, or the input
 conflicts with the game's stated pillars, STOP and escalate.
 </inputs>
@@ -83,7 +86,9 @@ Produce exactly one artifact:
 1. Restate: One line — the player fantasy this feature is chasing.
 2. Check: Does it serve the game's pillars? consistent with context? else escalate.
    If ARCHITECTURE.md exists and the fantasy plainly can't sit on the current
-   structure, note it as a Flag and route to /arch-guard (see <escalation>).
+   structure, note it as a Flag and route to /arch-guard; likewise if it collides
+   with BALANCE.md (a balance invariant / numerical philosophy), Flag and route to
+   /num-smith (see <escalation>).
 3. Resolve open threads: IF an IDEA.md exists, go through its "Open threads" one by
    one — for each, either make a converged design decision inside FEATURE-DESIGN.md,
    or raise it as a Flag needing the human's call. Never pass a vague thread
@@ -111,6 +116,10 @@ If the fantasy is affordable but structurally incompatible with ARCHITECTURE.md
 (it needs a new data shape or breaks an existing boundary/invariant), don't bake
 that conflict into the design — raise it as a Flag and tell the human to run
 `/arch-guard <feature>` so the architecture catches up first.
+If the fantasy implies numbers that collide with BALANCE.md (it would break a
+balance invariant or contradict the numerical philosophy), don't bake those
+numbers into the design — raise it as a Flag and route to `/num-smith <feature>`
+to settle the numbers first.
 </escalation>
 
 <constraints>
