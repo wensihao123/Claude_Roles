@@ -109,6 +109,23 @@ on is invalidated), don't bury it in INBOX — STOP and escalate per <escalation
 finishing known-wrong work is worse than pausing.
 </mid_flow_capture>
 
+<handoff_signoff>
+End every working session with ONE explicit, copy-pasteable baton line so the human
+never has to recall who's next. After your final output, print it in 简体中文 as:
+
+  已完成 — 下一步:/role-<next> <slug>(切换前先 /clear)
+
+- <next> + <slug> MUST match the HANDOFF "下一步" you just wrote — never let them drift.
+- If the next baton is a skill, use its command instead (e.g. /design-jam, /image-prompt,
+  /arch-guard, /num-smith, /ux-design, /state-machine-master). If the next step is the
+  human acting outside any role (e.g. make the art, wire the editor), say so plainly and
+  give the command to run AFTER they finish.
+- If the feature now meets 功能完成判据, say it's complete and point to /role-producer for
+  archiving instead of a build step.
+- The "(切换前先 /clear)" reminder is mandatory — switching role without /clear breaks the
+  one-session-one-role rule (clashing contracts, lost fresh-eyes, context bloat).
+</handoff_signoff>
+
 <constraints>
 - Report what IS, not what SHOULD BE. No recommendations beyond flags.
 - Quote real signatures; never invent interfaces.

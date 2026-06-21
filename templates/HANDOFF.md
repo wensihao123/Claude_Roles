@@ -53,7 +53,9 @@ updated: YYYY-MM-DD
 > 「下一步」写「功能完成 → Producer 归档 + 记 Shipped」。归档动作由 Producer 做。
 
 ## 下一步
-<开哪个 role、喂哪些 artifact。例:开 `/role-planner NN-slug`,喂 FEATURE-DESIGN.md>
+> 与各 role/skill 收尾时打印的「交棒行」同款写法,人类照抄即可换棒。
+> 格式:`/role-<next> <slug>(切换前先 /clear),喂 <artifact>`。
+<例:`/role-planner NN-slug(切换前先 /clear),喂 FEATURE-DESIGN.md`>
 
 ## 决策记录(账本·按需读)
 > 只记**仍有约束力**的关键决策;被推翻/过期的删掉或压成一句话。别让它无限长。
