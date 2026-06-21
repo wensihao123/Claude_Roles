@@ -86,6 +86,20 @@ exist, or works differently than the brief implies), STOP and record it under
 Flags before going further — the plan may need to change.
 </escalation>
 
+<mid_flow_capture>
+Mid-flow capture, deferred triage: if the human raises a NEW requirement or idea
+mid-session (not a correction to the task you're on), do NOT edit any requirement
+artifact and do NOT drop your current task. Append one faithful line to the standing
+harness/INBOX.md and carry on:
+  - [<YYYY-MM-DD>][from <feature>/<this role>][<priority or ?>] <the idea>
+Echo the line back so the human sees it captured. You do NOT invent the priority —
+fill 高/中/低 only if the human stated one, else leave [?]. Capturing is not deciding:
+only the Producer triages INBOX (prioritizes it / turns items into BACKLOG entries).
+EXCEPTION: if the input means your current task is now wrong (the plan/design it rests
+on is invalidated), don't bury it in INBOX — STOP and escalate per <escalation>;
+finishing known-wrong work is worse than pausing.
+</mid_flow_capture>
+
 <constraints>
 - Report what IS, not what SHOULD BE. No recommendations beyond flags.
 - Quote real signatures; never invent interfaces.

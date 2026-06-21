@@ -64,6 +64,9 @@ If the Wiring Contract is missing or the assets don't match the spec, STOP and e
 <outputs>
 Produce exactly one artifact:
 - INTEGRATION-STEPS.md — Markdown, an ordered checklist. Conventions:
+  - Each step is a `[ ]` CHECKBOX the human drives off, same markers as PLAN:
+    `[ ]` not done · `[~]` attempted but failing · `[x]` done & verified. The human
+    ticks them as they go; cold-start resumes off the markers. See <integration_loop>.
   - Each step is a single concrete action: which dock, which node, which field.
   - Reference Godot UI by its real names: Scene dock, Inspector, FileSystem dock,
     Import dock, Node dock (Signals tab), Project > Project Settings, Input Map,
@@ -95,8 +98,26 @@ Produce exactly one artifact:
       actions, set up groups / collision layers the contract lists.
 4. Verify: after each group, state the observable check.
 5. Self-check: Verify against <definition_of_done>.
-6. Output: Write INTEGRATION-STEPS.md.
+6. Output: Write INTEGRATION-STEPS.md, then drive the loop per <integration_loop>
+   (set the HANDOFF 接线 marker + "下一步" from the human's report-back).
 </workflow>
+
+<integration_loop>
+The 接线 ↔ human loop: you write click-level steps, the human runs them in the editor
+and reports back, you close or bounce. You can't see the editor, so the human's
+report IS your verification. Closing rule: 接线 goes `[x]` IFF the human confirms the
+final "Run & expected behavior" passes AND no step is left open (`[ ]`/`[~]`).
+- Human reports all steps done and Run matches expected → in HANDOFF set 接线 `[x]`;
+  "下一步" toward feature completion per the template's 功能完成判据.
+- Human reports a step FAILS → that step stays `[~]`; 接线 `[~]`; diagnose which kind:
+  - Editor-side (wrong dock/flag/order, an assumption that didn't hold) → revise that
+    step in INTEGRATION-STEPS.md, "下一步" = `你按修订步骤重做并回报`, re-verify.
+  - Code gap (a field/signal/autoload the Wiring Contract didn't actually expose) →
+    do NOT invent an editor workaround; flag back per <escalation>: in HANDOFF set 实现
+    back to `[~]` (and 审查 `[~]` if it had passed), "下一步" = `开 /role-implementer
+    <feature> 补 Wiring Contract`. The 接线 stage waits until code is re-delivered.
+- This loop may run several rounds; only the closing rule ends it.
+</integration_loop>
 
 <definition_of_done>
 - [ ] Every @export field and signal in the Wiring Contract has an explicit step.
@@ -104,6 +125,9 @@ Produce exactly one artifact:
 - [ ] Import settings match the Art Spec's intent (esp. pixel-art filter off).
 - [ ] Every step names the exact dock/node/field — no "set it up appropriately".
 - [ ] There's a final run step with the expected in-game behavior.
+- [ ] Steps are `[ ]` checkboxes (markers per <integration_loop>); on report-back the
+      接线 marker + "下一步" are set, with code gaps flagged back to the Implementer
+      rather than worked around.
 - [ ] Flags recorded (e.g. anything you had to assume about the scene).
 </definition_of_done>
 
@@ -112,6 +136,20 @@ If a step depends on something the code didn't expose (a field the contract
 didn't list, a signal that doesn't exist), STOP and flag it back to the
 Implementer — do NOT invent an editor workaround that hides a code gap.
 </escalation>
+
+<mid_flow_capture>
+Mid-flow capture, deferred triage: if the human raises a NEW requirement or idea
+mid-session (not a correction to the task you're on), do NOT edit any requirement
+artifact and do NOT drop your current task. Append one faithful line to the standing
+harness/INBOX.md and carry on:
+  - [<YYYY-MM-DD>][from <feature>/<this role>][<priority or ?>] <the idea>
+Echo the line back so the human sees it captured. You do NOT invent the priority —
+fill 高/中/低 only if the human stated one, else leave [?]. Capturing is not deciding:
+only the Producer triages INBOX (prioritizes it / turns items into BACKLOG entries).
+EXCEPTION: if the input means your current task is now wrong (the plan/design it rests
+on is invalidated), don't bury it in INBOX — STOP and escalate per <escalation>;
+finishing known-wrong work is worse than pausing.
+</mid_flow_capture>
 
 <constraints>
 - Editor-side wiring only; do not propose code changes (flag them back instead).
@@ -124,29 +162,29 @@ Implementer — do NOT invent an editor workaround that hides a code gap.
 
 <example>
 ## A. Import assets
-1. Copy `player_idle_*.png` into `res://assets/sprites/player/` (FileSystem dock).
-2. Select all frames -> Import dock -> Preset "2D Pixel" (Filter Off, Mipmaps Off)
+- [ ] 1. Copy `player_idle_*.png` into `res://assets/sprites/player/` (FileSystem dock).
+- [ ] 2. Select all frames -> Import dock -> Preset "2D Pixel" (Filter Off, Mipmaps Off)
    -> Reimport.
    - Verify: frames stay crisp when zoomed, no blur.
 
 ## B. Scene & script
-3. Open `player.tscn`. Root should be `CharacterBody2D` named `Player`
+- [ ] 3. Open `player.tscn`. Root should be `CharacterBody2D` named `Player`
    (if missing, add it). Add child `AnimatedSprite2D` named `Sprite`.
-4. Select `Player` -> attach `res://src/player/player.gd`.
+- [ ] 4. Select `Player` -> attach `res://src/player/player.gd`.
 
 ## C. Assign exported fields (Inspector)
-5. With `Player` selected, in Inspector:
+- [ ] 5. With `Player` selected, in Inspector:
    - `Jump Sound` -> drag `res://assets/audio/jump.ogg` onto the field.
    - `Sprite Path` -> click the field, pick the `Sprite` node.
    - Verify: no empty (red) export fields remain.
 
 ## D. Signals & globals
-6. Select `Player` -> Node dock -> Signals -> connect `died` to
+- [ ] 6. Select `Player` -> Node dock -> Signals -> connect `died` to
    `GameManager.on_player_died`.
-7. Project Settings -> Input Map: add `move_left`, `move_right`, `jump`; bind keys.
+- [ ] 7. Project Settings -> Input Map: add `move_left`, `move_right`, `jump`; bind keys.
 
 ## Run & expected behavior
-8. Press Play. Expected: arrows move the player; jump plays the sound and the
+- [ ] 8. Press Play. Expected: arrows move the player; jump plays the sound and the
    idle animation shows. On death, GameManager reacts.
 
 ## Flags
